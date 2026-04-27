@@ -227,3 +227,4 @@ MIT
 - [Insighta Backend](https://github.com/your-org/insighta-backend)
 - [Insighta Web Portal](https://github.com/your-org/insighta-web)
 # insighta-cli
+# insighta-cli
