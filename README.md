@@ -1,4 +1,3 @@
-
 # Insighta CLI
 
 Command-line interface for the Insighta Labs+ Profile Intelligence Platform.
@@ -39,7 +38,7 @@ For convenience, you can add this to your shell profile (`.bashrc`, `.zshrc`, et
 API_BASE=https://api.insighta.com/api
 ```
 
-**Note:** The default is `http://localhost:4888/api` for local development.
+**Note:** The default is `http://185.200.244.215:9400/api` for local development.
 
 ## Usage
 
@@ -107,6 +106,7 @@ Display current user information.
 #### `insighta profiles list [options]`
 
 List profiles with optional filters:
+
 - `-g, --gender <gender>`: Filter by gender (male/female)
 - `-c, --country-id <country>`: Filter by country code (e.g., NG, US)
 - `--age-group <group>`: Filter by age group (child/teenager/adult/senior)
@@ -128,6 +128,7 @@ Delete a profile (admin only).
 #### `insighta profiles search <query>`
 
 Search profiles using natural language:
+
 - "female adults from US"
 - "males over 30"
 - "senior profiles from Germany"
@@ -139,6 +140,7 @@ Create a new profile (requires admin role).
 #### `insighta profiles export [options]`
 
 Export profiles to CSV format:
+
 - `-f, --format <format>`: Export format (csv)
 - All filter options from `list` command are supported
 
@@ -175,7 +177,7 @@ insighta profiles search "young males from Ghana"
 Environment variables (optional, defaults shown):
 
 ```env
-API_BASE=http://localhost:4888/api
+API_BASE=http://185.200.244.215:9400/api
 ```
 
 ## Security
@@ -208,6 +210,7 @@ npm run lint
 ### Login fails
 
 Ensure the GitHub OAuth app callback URL matches your setup:
+
 - Default: `http://localhost:3000/callback`
 
 ### Token expired
@@ -226,5 +229,7 @@ MIT
 
 - [Insighta Backend](https://github.com/your-org/insighta-backend)
 - [Insighta Web Portal](https://github.com/your-org/insighta-web)
+
 # insighta-cli
+
 # insighta-cli

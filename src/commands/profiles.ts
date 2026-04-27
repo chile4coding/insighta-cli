@@ -5,7 +5,7 @@ import ora from "ora";
 import { table as createTable } from "table";
 import { loadCredentials, refreshAccessToken } from "../utils/auth";
 
-const API_BASE = process.env.API_BASE || "http://localhost:4888/api";
+const API_BASE = process.env.API_BASE || "http://185.200.244.215:9400/api";
 
 function getAuthHeaders(): Record<string, string> {
   const credentials = loadCredentials(true);

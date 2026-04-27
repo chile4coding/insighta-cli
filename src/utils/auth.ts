@@ -5,7 +5,7 @@ import * as os from "os";
 import * as path from "path";
 import chalk from "chalk";
 
-const API_BASE = process.env.API_BASE || "http://localhost:4888/api";
+const API_BASE = process.env.API_BASE || "http://185.200.244.215:9400/api";
 const CREDENTIALS_DIR = path.join(os.homedir(), ".insighta");
 const CREDENTIALS_FILE = path.join(CREDENTIALS_DIR, "credentials.json");
 
@@ -45,7 +45,9 @@ export function loadCredentials(requireAuth?: boolean): Credentials | null {
   try {
     if (!fs.existsSync(CREDENTIALS_FILE)) {
       if (requireAuth) {
-        throw new Error("Not authenticated. Run 'insighta login' to authenticate");
+        throw new Error(
+          "Not authenticated. Run 'insighta login' to authenticate",
+        );
       }
       return null;
     }

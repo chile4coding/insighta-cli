@@ -10,12 +10,49 @@ import { createServer } from "http";
 import { URL } from "url";
 import chalk from "chalk";
 
-const API_BASE = process.env.API_BASE || "http://localhost:4888/api";
-const CALLBACK_PORT = 3000;
-const CALLBACK_URL = `http://localhost:${CALLBACK_PORT}/callback`;
+const API_BASE = process.env.API_BASE || "http://185.200.244.215:9400/api";
+let CALLBACK_PORT = 3000;
+let CALLBACK_URL = `http://localhost:${CALLBACK_PORT}/callback`;
+
+async function findAvailablePort(startPort: number): Promise<number> {
+  for (let offset = 0; offset < 10; offset++) {
+    const port = startPort + offset;
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const testServer = createServer()
+          .once("error", (err: any) => {
+            if (err.code === "EADDRINUSE") {
+              reject(new Error("EADDRINUSE"));
+            } else {
+              reject(err);
+            }
+          })
+          .listen(port, () => {
+            testServer.close();
+            resolve();
+          });
+      });
+      return port;
+    } catch {
+      continue;
+    }
+  }
+  throw new Error("No available ports found");
+}
 
 export async function login(cmd: Command): Promise<void> {
   console.log(chalk.cyan("\n🚀 Insighta Login\n"));
+
+  // Find an available port for the callback server
+  try {
+    CALLBACK_PORT = await findAvailablePort(3000);
+    CALLBACK_URL = `http://localhost:${CALLBACK_PORT}/callback`;
+  } catch (err) {
+    console.error(
+      chalk.red("Error: Could not find an available port for callback server"),
+    );
+    process.exit(1);
+  }
 
   // Step 1: Start local callback server to receive tokens from backend
   const server = createServer(async (req: any, res: any) => {
@@ -174,13 +211,13 @@ export async function whoami(): Promise<void> {
   try {
     credentials = loadCredentials(true);
   } catch (err: any) {
-    console.log(chalk.yellow('Not logged in'));
+    console.log(chalk.yellow("Not logged in"));
     console.log('Run "insighta login" to authenticate');
     return;
   }
 
   if (!credentials?.accessToken) {
-    console.log(chalk.yellow('Not logged in'));
+    console.log(chalk.yellow("Not logged in"));
     console.log('Run "insighta login" to authenticate');
     return;
   }
