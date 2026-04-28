@@ -93,7 +93,7 @@ export async function login(cmd: Command): Promise<void> {
 
       // Fetch full user info from backend
       try {
-        const userResponse = await axios.get(`${API_BASE}/auth/me`, {
+        const userResponse = await axios.get(`${API_BASE}/api/users/me`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
             "X-API-Version": "1",
