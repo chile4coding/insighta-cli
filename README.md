@@ -6,7 +6,7 @@
 
 ```bash
 # Install globally via npm
-npm install -g insighta
+npm install -g insighta-cli
 
 # Or install from source
 git clone <repository-url>
