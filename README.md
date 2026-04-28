@@ -106,6 +106,7 @@ Displays the currently logged-in user's information (username, email, role, acti
 List profiles with optional filtering, sorting, and pagination.
 
 **Options:**
+
 - `-g, --gender <gender>` — Filter by gender (`male` / `female`)
 - `-c, --country-id <country>` — Filter by country code (e.g., `NG`, `US`)
 - `--age-group <group>` — Filter by age group (`child`, `teenager`, `adult`, `senior`)
@@ -129,6 +130,7 @@ Delete a profile. **Admin role required.**
 Search profiles using natural language queries.
 
 Examples:
+
 - `"female adults from US"`
 - `"males over 30"`
 - `"senior profiles from Germany"`
@@ -142,6 +144,7 @@ Create a new profile with AI-generated demographic data. **Admin role required.*
 Export matching profiles to a CSV file. Supports the same filters as `list`.
 
 Options:
+
 - `-f, --format <format>` — Export format (default: `csv`)
 - All list filters are supported
 
@@ -156,6 +159,7 @@ Credentials are stored securely in:
 File permissions are set to `600` (owner read/write only).
 
 **Token lifetimes:**
+
 - Access token: 3 minutes
 - Refresh token: 5 minutes
 
@@ -190,15 +194,16 @@ The CLI automatically refreshes expired access tokens using the stored refresh t
 8. **CLI** receives tokens, fetches user info via `/auth/me`, saves credentials
 
 All API requests (except `/auth/*`) require:
+
 - `Authorization: Bearer <access_token>`
 - `X-API-Version: 1`
 
 ## Role-Based Access Control
 
-| Role    | Permissions                                   |
-|---------|-----------------------------------------------|
-| `admin` | Full access: list, get, create, delete, export |
-| `analyst`| Read-only: list, get, search                 |
+| Role      | Permissions                                    |
+| --------- | ---------------------------------------------- |
+| `admin`   | Full access: list, get, create, delete, export |
+| `analyst` | Read-only: list, get, search                   |
 
 Default role for new users: `analyst`
 
@@ -220,10 +225,10 @@ Requests without this header are rejected with `400 Bad Request`.
 
 The backend enforces rate limits:
 
-| Endpoint scope        | Limit                     |
-|-----------------------|---------------------------|
-| `/auth/*` endpoints   | 10 requests per minute    |
-| All other endpoints   | 60 requests per user/minute |
+| Endpoint scope      | Limit                       |
+| ------------------- | --------------------------- |
+| `/auth/*` endpoints | 10 requests per minute      |
+| All other endpoints | 60 requests per user/minute |
 
 Exceeding limits returns `429 Too Many Requests`.
 
@@ -329,6 +334,5 @@ MIT
 
 ## See Also
 
-- [Insighta Backend](https://github.com/your-org/insighta-backend)
-- [Insighta Web Portal](https://github.com/your-org/insighta-web)
-
+- [Insighta Backend](https://github.com/chile4coding/insighta-backend)
+- [Insighta Web Portal](https://github.com/chile4coding/insighta-web)
