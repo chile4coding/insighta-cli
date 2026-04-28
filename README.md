@@ -1,6 +1,6 @@
 # Insighta CLI
 
-> Insighta Labs+ CLI — Command-line interface for the Profile Intelligence Service
+> Insighta CLI — Command-line interface for the Insighta Profile Intelligence Platform
 
 ## Installation
 
@@ -18,21 +18,24 @@ npm link
 
 ## Setup
 
-The CLI connects to the Insighta backend service. Only the backend URL needs to be configured.
+The CLI connects to the Insighta backend service. Configure the backend URL:
 
 **Set the `API_BASE` environment variable:**
 
 ```bash
-# Bash/Zsh
+# Bash/Zsh (production)
 export API_BASE=https://api.insighta.com/api
 
 # Windows PowerShell
 $env:API_BASE = "https://api.insighta.com/api"
+
+# Or for local development
+export API_BASE=http://localhost:4888/api
 ```
 
 Add to your shell profile (`.bashrc`, `.zshrc`, etc.) to persist across sessions.
 
-**Default:** `http://localhost:4888/api` (for local development)
+**Default:** `http://localhost:4888/api`
 
 ## Usage
 
@@ -104,6 +107,8 @@ Displays the currently logged-in user's information (username, email, role, acti
 #### `insighta profiles list [options]`
 
 List profiles with optional filtering, sorting, and pagination.
+
+All requests include `X-API-Version: 1` header automatically.
 
 **Options:**
 
@@ -184,8 +189,8 @@ The CLI automatically refreshes expired access tokens using the stored refresh t
                          refresh_token)
 ```
 
-1. **CLI** starts local HTTP server on `http://localhost:3000/callback`
-2. **CLI** requests `GET /auth/github?redirect_uri=http://localhost:3000/callback`
+1. **CLI** starts local HTTP server on `http://localhost:3000/callback` (or next available port 3001–3009 if 3000 is occupied)
+2. **CLI** requests `GET /auth/github?redirect_uri=http://localhost:<port>/callback`
 3. **Backend** generates PKCE, stores redirect URI, redirects to GitHub
 4. **User** authenticates on GitHub
 5. **GitHub** redirects to backend's `/auth/github/callback`
