@@ -5,7 +5,7 @@ import * as os from "os";
 import * as path from "path";
 import chalk from "chalk";
 
-const API_BASE = process.env.API_BASE || "http://185.200.244.215:9400/api";
+const API_BASE = process.env.API_BASE || "http://185.200.244.215:9400";
 const CREDENTIALS_DIR = path.join(os.homedir(), ".insighta");
 const CREDENTIALS_FILE = path.join(CREDENTIALS_DIR, "credentials.json");
 
@@ -114,7 +114,6 @@ export async function refreshAccessToken(): Promise<Credentials | null> {
         },
       },
     );
-    console.log("this is the response data: ", response.data);
     if (response.data.status === "success") {
       const now = Date.now();
       const newCreds: Credentials = {
