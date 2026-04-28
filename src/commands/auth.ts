@@ -223,7 +223,7 @@ export async function whoami(): Promise<void> {
   }
 
   try {
-    const response = await axios.get(`${API_BASE}/api/user/me`, {
+    const response = await axios.get(`${API_BASE}/api/users/me`, {
       headers: {
         Authorization: `Bearer ${credentials.accessToken}`,
         "X-API-Version": "1",
