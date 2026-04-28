@@ -10,7 +10,7 @@ import { createServer } from "http";
 import { URL } from "url";
 import chalk from "chalk";
 
-const API_BASE = process.env.API_BASE || "http://185.200.244.215:9400/api";
+const API_BASE = process.env.API_BASE || "http://185.200.244.215:9400";
 let CALLBACK_PORT = 3000;
 let CALLBACK_URL = `http://localhost:${CALLBACK_PORT}/callback`;
 
@@ -223,7 +223,7 @@ export async function whoami(): Promise<void> {
   }
 
   try {
-    const response = await axios.get(`${API_BASE}/auth/me`, {
+    const response = await axios.get(`${API_BASE}/api/user/me`, {
       headers: {
         Authorization: `Bearer ${credentials.accessToken}`,
         "X-API-Version": "1",
