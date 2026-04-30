@@ -123,22 +123,22 @@ export async function listProfiles(
     const response = await makeRequest("GET", url);
     spinner.stop();
 
-    if (response?.data && response?.data?.data.length > 0) {
-      const tableData = [
-        [
-          chalk.cyan("ID"),
-          chalk.cyan("Name"),
-          chalk.cyan("Gender"),
-          chalk.cyan("G Prob"),
-          chalk.cyan("Age"),
-          chalk.cyan("Age Group"),
-          chalk.cyan("Country"),
-          chalk.cyan("Country Name"),
-          chalk.cyan("C Prob"),
-          chalk.cyan("Created"),
-        ],
-        ...response.data?.data.map(formatProfileRow),
-      ];
+     if (response?.data && response?.data?.data.length > 0) {
+       const tableData = [
+         [
+           chalk.cyan("ID"),
+           chalk.cyan("Name"),
+           chalk.cyan("Gender"),
+           chalk.cyan("G Prob"),
+           chalk.cyan("Age"),
+           chalk.cyan("Age Group"),
+           chalk.cyan("Country"),
+           chalk.cyan("Country Name"),
+           chalk.cyan("C Prob"),
+           chalk.cyan("Created"),
+         ],
+         ...(response.data?.data?.map(formatProfileRow) || []),
+       ];
 
       const output = createTable(tableData, {
         columns: {
@@ -280,22 +280,22 @@ export async function searchProfiles(query: string): Promise<void> {
     const response = await makeRequest("GET", url);
     spinner.stop();
 
-    if (response?.data && response.data.data?.length > 0) {
-      const tableData = [
-        [
-          chalk.cyan("ID"),
-          chalk.cyan("Name"),
-          chalk.cyan("Gender"),
-          chalk.cyan("G Prob"),
-          chalk.cyan("Age"),
-          chalk.cyan("Age Group"),
-          chalk.cyan("Country"),
-          chalk.cyan("Country Name"),
-          chalk.cyan("C Prob"),
-          chalk.cyan("Created"),
-        ],
-        ...response.data?.data.map(formatProfileRow),
-      ];
+     if (response?.data && response.data.data?.length > 0) {
+       const tableData = [
+         [
+           chalk.cyan("ID"),
+           chalk.cyan("Name"),
+           chalk.cyan("Gender"),
+           chalk.cyan("G Prob"),
+           chalk.cyan("Age"),
+           chalk.cyan("Age Group"),
+           chalk.cyan("Country"),
+           chalk.cyan("Country Name"),
+           chalk.cyan("C Prob"),
+           chalk.cyan("Created"),
+         ],
+         ...(response.data?.data?.map(formatProfileRow) || []),
+       ];
 
       const output = createTable(tableData, {
         columns: {
