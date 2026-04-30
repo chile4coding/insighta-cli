@@ -1,15 +1,17 @@
 # Insighta CLI
 
-> Insighta CLI — Command-line interface for the Insighta Profile Intelligence Platform
+> Insighta Labs+ CLI - Command-line interface for Profile Intelligence Service
 
 ## Installation
 
+**Requires Node.js >= 18.**
+
 ```bash
 # Install globally via npm
-npm install -g insighta
+npm install -g insighta-cli-tool
 
 # Or install from source
-git clone <repository-url>
+git clone https://github.com/chile4coding/insighta-cli.git
 cd insighta-cli
 npm install
 npm run build
@@ -20,22 +22,7 @@ npm link
 
 The CLI connects to the Insighta backend service. Configure the backend URL:
 
-**Set the `API_BASE` environment variable:**
-
-```bash
-# Bash/Zsh (production)
-export API_BASE=https://api.insighta.com/api
-
-# Windows PowerShell
-$env:API_BASE = "https://api.insighta.com/api"
-
-# Or for local development
-export API_BASE=http://localhost:4888/api
-```
-
 Add to your shell profile (`.bashrc`, `.zshrc`, etc.) to persist across sessions.
-
-**Default:** `http://localhost:4888/api`
 
 ## Usage
 

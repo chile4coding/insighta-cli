@@ -1,5 +1,5 @@
 {
-  "name": "insighta",
+  "name": "insighta-cli-tool",
   "version": "1.0.1",
   "description": "Insighta Labs+ CLI - Command-line interface for Profile Intelligence Service",
   "main": "dist/index.js",
