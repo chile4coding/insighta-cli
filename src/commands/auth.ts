@@ -40,7 +40,7 @@ async function findAvailablePort(startPort: number): Promise<number> {
   throw new Error("No available ports found");
 }
 
-export async function login(cmd: Command): Promise<void> {
+export async function login(_cmd: Command): Promise<void> {
   console.log(chalk.cyan("\n🚀 Insighta Login\n"));
 
   // Find an available port for the callback server
