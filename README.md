@@ -324,6 +324,51 @@ You're attempting an admin-only action (`create`, `delete`) with an analyst acco
 
 MIT
 
+## CI/CD
+
+### Automated npm Publishing
+
+This repository uses GitHub Actions to automatically publish new releases to npm when you push to `main` or create a version tag.
+
+**Setup:**
+
+1. Create an npm automation token:
+   ```bash
+   # Login to npm (if not already)
+   npm login
+
+   # Create an automation token (read-only for CI)
+   # Visit: https://www.npmjs.com/settings/<your-username>/tokens
+   # Click "Create Automation Token"
+   # Copy the generated token
+   ```
+
+2. Add the token to your GitHub repository:
+   - Go to repository Settings → Secrets and variables → Actions
+   - Click "New repository secret"
+   - Name: `NPM_TOKEN`
+   - Value: paste your npm automation token
+   - Click "Add secret"
+
+3. Create a release:
+   ```bash
+   # Update version in package.json
+   npm version patch    # 1.0.1 → 1.0.2
+   # or
+   npm version minor    # 1.0.1 → 1.1.0
+   # or
+   npm version major    # 1.0.1 → 2.0.0
+
+   # Push changes (version commit + tag)
+   git push --follow-tags
+   ```
+
+   The workflow triggers on tag pushes (`v*`) and publishes automatically.
+
+**Manual trigger:**
+
+- Go to Actions → "Release to npm" workflow → "Run workflow" to publish manually.
+
 ## See Also
 
 - [Insighta Backend](https://github.com/chile4coding/insighta-backend)
